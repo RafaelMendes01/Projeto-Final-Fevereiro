@@ -1,1 +1,1 @@
-console.log(`aparentemente funcionado`)
+const app = require('./server');
