@@ -11,3 +11,5 @@ class UsuariosControllers{
         return this.services.createService(req,res)
     }
 }
+
+module.exports = UsuariosControllers;
