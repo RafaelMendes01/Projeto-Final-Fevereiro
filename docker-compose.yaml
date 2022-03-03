@@ -5,10 +5,10 @@
     build: .
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: app-teste
-      environment:
-        MONGO_URI: mongodb://root:root@db
-        KEY_MASTER_JWT: KJE5cuyxmr3dya8ncn
-        PORT: 3000
+    environment:
+      MONGO_URI: mongodb://root:root@db
+      KEY_MASTER_JWT: KJE5cuyxmr3dya8ncn
+      PORT : 3000
     ports:
       - 3000:3000
     restart: always
