@@ -2,7 +2,7 @@ const connect = require('../db/conexao');
 const UsuariosSchema = require('../db/schemas/UsuariosSchemas')
 class UsuariosServices{
     constructor(){
-        this.conexao = connect();
+        this.conexao = connect;
         this.usuarios = UsuariosSchema;
     }
     async createService(req, res){
@@ -14,8 +14,10 @@ class UsuariosServices{
                 email,
                 senha
             })
-            return res.status(201).json(usuarios);  
+            const {senha: SenhaDoUsuario, ... resto} = usuarios._doc;
+            return res.status(201).json({usuarios:resto});  
         } catch (error) {
+            console.log(error)
             return res.status(400).json(error);
             
         }
