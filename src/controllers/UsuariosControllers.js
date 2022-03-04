@@ -10,6 +10,16 @@ class UsuariosControllers{
         }
         return this.services.createService(req,res)
     }
+    async getAllController(req,res){
+       return this.services.getUsuariosService(req,res)
+    }
+    async showController(req,res){
+        const {email} = req.query;
+        if(!email){
+            return res.status(400).json({error : "email incorreto ou inexistente"}); 
+        }
+        return this.services.showUsuariosServices(req,res);
+    }
 }
 
 module.exports = UsuariosControllers;
