@@ -1,3 +1,4 @@
+const { hash } = require('bcrypt')
 const connect = require('../db/conexao');
 const UsuariosSchema = require('../db/schemas/UsuariosSchemas')
 class UsuariosServices{
@@ -9,10 +10,11 @@ class UsuariosServices{
         const {nome,email,senha} = req.body;
         try {
             await this.conexao();
+            const hashSenha = await hash(senha, 11)
             const usuarios = await this.usuarios.create({
                 nome,
                 email,
-                senha
+                senha: hashSenha
             })
             const {senha: SenhaDoUsuario, ... resto} = usuarios._doc;
             return res.status(201).json({usuarios:resto});  
