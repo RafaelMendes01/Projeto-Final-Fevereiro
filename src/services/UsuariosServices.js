@@ -24,5 +24,30 @@ class UsuariosServices{
             
         }
     }
+    async getUsuariosService(req,res){
+        try {
+            await this.conexao();
+            const usuarios = await this.usuarios.find();
+            const usuarioSemSenha = usuarios.map((value) =>{
+                const {senha, ... usuarioSemSenha} = value._doc;
+                return usuarioSemSenha;
+            })
+            return res.status(200).json({usuarios: usuarioSemSenha});
+        } catch (error) {
+            return res.status(400).json(error);
+        }
+    }
+    async showUsuariosServices(req,res){
+        const {email} = req.query;
+        try {
+            await this.conexao();
+            const usuarios = await this.usuarios.findOne({email});
+            const {senha, ... usuarioSemSenha} = usuarios._doc;
+            return res.status(200).json({usuarios: usuarioSemSenha});
+        } catch (error) {
+            return res.status(400).json(error);
+        }
+    }
+    
 }
 module.exports = UsuariosServices;
