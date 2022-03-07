@@ -1,7 +1,9 @@
 const express = require('express');
-const UsuariosControllers = require('./controllers/UsuariosControllers')
-const UsuariosSchema = require('./db/schemas/UsuariosSchemas')
+const UsuariosControllers = require('./controllers/UsuariosControllers');
+const AuthController = require('./controllers/auth_controller');
+const UsuariosSchema = require('./db/schemas/UsuariosSchemas');
 const usuarioscontroller = new UsuariosControllers();
+const authController = new AuthController;
 
 const routes = express.Router();
 
@@ -16,4 +18,7 @@ routes.route('/usuarios')
 
 routes.route('/usuarios/show')
 .get(async (req,res) => usuarioscontroller.showController(req,res))
+
+routes.route('/login')
+ .post(async (req,res) => await authController.loginController(req,res))
 module.exports = routes;
