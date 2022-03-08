@@ -3,6 +3,7 @@ const UsuariosControllers = require('./controllers/UsuariosControllers');
 const AuthController = require('./controllers/auth_controller');
 const middleware = require("./middleware/validarToken");
 const UsuariosSchema = require('./db/schemas/UsuariosSchemas');
+const { route } = require('express/lib/application');
 const usuarioscontroller = new UsuariosControllers();
 const authController = new AuthController;
 
@@ -18,6 +19,10 @@ routes.route('/usuarios')
 .post((req,res)=>{
     return usuarioscontroller.createControllers(req,res)
 })
+.delete((req,res)=>{
+    return usuarioscontroller.deleteController(req,res)
+}) 
+
 
 routes.use(new middleware().validateToken)
 
@@ -26,5 +31,6 @@ routes.route('/usuarios')
 
 routes.route('/usuarios/show')
 .get(async (req,res) => usuarioscontroller.showController(req,res))
+
 
 module.exports = routes;

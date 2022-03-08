@@ -46,8 +46,13 @@ class UsuariosServices{
             return res.status(200).json({usuarios: usuarioSemSenha});
         } catch (error) {
             return res.status(400).json(error);
+        } 
+    }  
+    async DeleteUsuarioServices(req,res){
+        const {email} = req.body;
+            await this.conexao();
+            const usuarios = await this.usuarios.remove({email});
+            return res.status(200).json(usuarios)
         }
-    }
-    
 }
 module.exports = UsuariosServices;
