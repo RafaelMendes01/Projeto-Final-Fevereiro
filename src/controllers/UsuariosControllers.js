@@ -20,6 +20,13 @@ class UsuariosControllers{
         }
         return this.services.showUsuariosServices(req,res);
     }
+    async deleteController(req,res){
+        const {email} = req.body;
+        if(!email){
+            return res.status(400).json({error: "email incorreto ou inexistente"})
+        }
+        return this.services.DeleteUsuarioServices(req,res);
+    }
 }
 
 module.exports = UsuariosControllers;
