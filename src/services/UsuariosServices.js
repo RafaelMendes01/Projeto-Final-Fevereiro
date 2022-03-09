@@ -50,9 +50,14 @@ class UsuariosServices{
     }  
     async DeleteUsuarioServices(req,res){
         const {email} = req.body;
+        try{
             await this.conexao();
             const usuarios = await this.usuarios.remove({email});
             return res.status(200).json(usuarios)
+        }
+        catch(error){
+            return res.status(400).json(error)
+        }
         }
 }
 module.exports = UsuariosServices;

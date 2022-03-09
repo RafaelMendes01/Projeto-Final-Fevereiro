@@ -19,15 +19,16 @@ routes.route('/usuarios')
 .post((req,res)=>{
     return usuarioscontroller.createControllers(req,res)
 })
-.delete((req,res)=>{
-    return usuarioscontroller.deleteController(req,res)
-}) 
+
 
 
 routes.use(new middleware().validateToken)
 
 routes.route('/usuarios')
 .get(async (req,res) => await usuarioscontroller.getAllController(req,res))
+.delete((req,res)=>{
+    return usuarioscontroller.deleteController(req,res)
+}) 
 
 routes.route('/usuarios/show')
 .get(async (req,res) => usuarioscontroller.showController(req,res))
