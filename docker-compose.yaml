@@ -2,6 +2,7 @@
   
   services:
    app:
+    # image: rafaelmendes01/teste-back:0.1.0  
     build: .
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: app-teste
@@ -15,8 +16,6 @@
     tty: true
     networks:
       - api-mongo
-    volumes:
-      - .:/home/node/app
    db:
     image: mongo
     ports:
