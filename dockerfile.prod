@@ -10,6 +10,6 @@ run yarn install
 
 copy . .
 
-entrypoint ["yarn", "start"]
+entrypoint [ "yarn", "start" ]
 
 expose 3000
