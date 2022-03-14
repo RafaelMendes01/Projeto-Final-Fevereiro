@@ -2,8 +2,7 @@
   
   services:
    app:
-    # image: rafaelmendes01/teste-back:0.1.0  
-    build: .
+    image: rafaelmendes01/teste-back:0.2.0  
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: app-teste
     environment:
