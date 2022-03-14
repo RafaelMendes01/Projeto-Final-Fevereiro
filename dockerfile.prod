@@ -1,0 +1,15 @@
+from node:16
+
+user root
+
+workdir /home/node/app
+
+copy package.json .
+
+run yarn install 
+
+copy . .
+
+entrypoint ["yarn", "start"]
+
+expose 3000
